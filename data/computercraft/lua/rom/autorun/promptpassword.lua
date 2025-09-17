@@ -16,8 +16,6 @@ if settings.get("password.hash") ~= "" then
     if sha256(attempt) == settings.get("password.hash") then
         print("Access granted.")
     else
-        print("Access denied.")
-        os.sleep(2)
         os.shutdown()
     end
 else
