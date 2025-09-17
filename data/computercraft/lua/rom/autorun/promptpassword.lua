@@ -1,0 +1,27 @@
+local password = require("password")
+local sha256 = require("sha2").sha256
+
+settings.load(".password_settings")
+
+settings.define("password.hash", {
+    description = "The password hash",
+    default = "",
+    type = "string",
+})
+
+settings.save(".password_settings")
+
+if settings.get("password.hash") ~= "" then
+    local attempt = password.read("Enter password:", true)
+    if sha256(attempt) == settings.get("password.hash") then
+        print("Access granted.")
+    else
+        print("Access denied.")
+        os.sleep(2)
+        os.shutdown()
+    end
+else
+    print("DATA IS NOT PROTECTED!")
+    print("No password set. Please run setpassword to set one.")
+end
+
