@@ -15,6 +15,7 @@ if settings.get("password.hash") ~= "" then
     local attempt = password.read("Enter password:", true)
     if sha256(attempt) == settings.get("password.hash") then
         term.clear()
+        term.setCursorPos(1,1)
     else
         os.shutdown()
     end
