@@ -18,6 +18,8 @@ function passwordmodule.read(prompt, ignoreTerminate)
 
     drawPrompt(prompt)
 
+    term.setCursorBlink(true)
+
     while true do
         local event, param
         if ignoreTerminate then
@@ -46,6 +48,7 @@ function passwordmodule.read(prompt, ignoreTerminate)
         end
     end
 
+    term.setCursorBlink(false)
     term.setCursorPos(1,4)
     return password
 end
