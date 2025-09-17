@@ -14,7 +14,7 @@ settings.save(".password_settings")
 if settings.get("password.hash") ~= "" then
     local attempt = password.read("Enter password:", true)
     if sha256(attempt) == settings.get("password.hash") then
-        print("Access granted.")
+        term.clear()
     else
         os.shutdown()
     end
