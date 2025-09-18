@@ -3,10 +3,11 @@ local sha256 = require("sha2").sha256
 
 settings.load(".password_settings")
 
-local myPass = password.read("Type your new password:", false)
+local myPass = password.read("Type your new password (Leave empty to clear):", false)
 
 if myPass == "" then
-    print("Password cannot be empty.")
+    settings.set("password.hash", "")
+    print("Password cleared.")
     return
 end
 
